@@ -1,0 +1,19 @@
+{% extends 'flatpages/default.html' %}
+
+<!-- Название у нас будет posts -->
+{% block title %}
+Post
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+    <h3>Публикация</h3>
+        <table>
+            <tr>
+                <h1>{{ post.title }}</h1>
+                <h4>{{ post.dateCreation|date:'d M Y' }}</h4>
+                <td>{{ post.text}}</td>
+            </tr>
+        </table>
+{% endblock content %}
+
