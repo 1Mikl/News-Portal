@@ -12,16 +12,23 @@ News
 {% block content %}
     <h1>Все новости </h1>
     <h3>{{ time_now|date:'d M Y' }}</h3>
-<h3>Количество всех статей и новостей на странице:</h3> <h3>{{ posts|length }}</h3>
-<h3> {{ next_sale|default_if_none:"Чуть позже сообщим о свежих новостях!" }} </h3>
 
 {# Теперь будем проверять не request.user.is_authenticated, а конкретные права #}
     {% if perms.news.add_post %}
     <a href="{% url 'post_create' %}" class="btn btn-secondary btn-sm">Добавить новость</a>
     {% endif %}
 
+
+<h3> {{ next_sale|default_if_none:"Чуть позже сообщим о свежих новостях!" }} </h3>
+
+
+    {% if is_not_subscriber %}
+       <p class="text-center"><a href="{% url 'subscribe' postCategory.id %}" class="btn btn-secondary btn-sm">Подписаться</a></p>
+    {% endif %}
+
+
 <hr>
-   {% if posts %}
+   {% if category_news_list %}
        <table>
            <tr>
                <td>Заголовок</td>
@@ -31,7 +38,7 @@ News
                <td>Категории</td>
            </tr>
 
-           {% for post in posts %}
+           {% for post in category_news_list %}
            <tr>
 
 
@@ -44,9 +51,9 @@ News
                         <a href="{% url 'post_update' post.id %}" class="btn btn-secondary btn-sm">Изменить</a>
                     {% endif %}
 
-                   {% if perms.news.delete_post %}
-                   <a href="{% url 'post_delete' post.id %}" class="btn btn-secondary btn-sm">Удалить</a>
-                   {% endif %}
+                    {% if perms.news.delete_post %}
+                        <a href="{% url 'post_delete' post.id %}" class="btn btn-secondary btn-sm">Удалить</a>
+                    {% endif %}
                </td>
 
                <td> {% for postCategory in post.postCategory.all %}
