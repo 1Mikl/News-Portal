@@ -2,11 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.urls import reverse
+from django.core.cache import cache
 
 # Create your models
 class Author(models.Model):
     authorUser = models.OneToOneField(User, on_delete=models.CASCADE)
     ratingAuthor = models.SmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ['id']
 
     # def __str__(self):
     #     return self.authorUser
@@ -33,6 +37,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['id']
+
+
 class Post(models.Model):
     NEWS = 'NW'
     ARTICLE = 'AR'
@@ -48,6 +56,7 @@ class Post(models.Model):
     title = models.CharField(max_length=128)
     text = models.TextField()
     rating = models.SmallIntegerField(default=0)
+    is_published = models.BooleanField(default=True)
     # category = models.ForeignKey(to='Category', on_delete=models.CASCADE, related_name='posts')
 
     def preview(self):
@@ -68,15 +77,26 @@ class Post(models.Model):
         self.rating -=1
         self.save()
 
-    # def preview(self):
-    #     return self.text[0:123] + '...'
 
-    def get_absolute_url(self):
-        return reverse('post_detail', args=[str(self.id)])
+
+    # def get_absolute_url(self):
+    #     return reverse('post_detail', args=[str(self.id)])
+
+    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+        return f'/news/{self.id}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # сначала вызываем метод родителя, чтобы объект сохранился
+        cache.delete(f'post-{self.pk}')  # затем удаляем его из кэша, чтобы сбросить его
+
+    class Meta:
+        ordering = ['dateCreation', 'title']
 
 class PostCategory(models.Model):
     postThrough = models.ForeignKey(Post, on_delete=models.CASCADE)
     categoryThrough = models.ForeignKey(Category, on_delete=models.CASCADE)
+    class Meta:
+        ordering = ['id']
 
 
 
@@ -95,6 +115,9 @@ class Comment(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
+
+    class Meta:
+        ordering = ['id']
 
 
 

@@ -1,0 +1,88 @@
+2023-05-17 18:38:19,596 - ERROR - Internal Server Error: /news/categories/4/ - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\log.py - (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('category_2list.html, news/post_list.html'), <traceback object at 0x0000027097437E40>)
+Traceback (most recent call last):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: category_2list.html, news/post_list.html
+2023-05-17 18:38:19,599 - ERROR - "GET /news/categories/4/ HTTP/1.1" 500 92233 - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\servers\basehttp.py - None
+2023-05-17 18:44:26,840 - ERROR - Internal Server Error: /news/categories/4/ - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("'int' object has no attribute 'lower'"), <traceback object at 0x000001EC6057E640>)
+Traceback (most recent call last):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\deprecation.py", line 135, in __call__
+    response = self.process_request(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 142, in get_host
+    if domain and validate_host(domain, allowed_hosts):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 710, in validate_host
+    return any(
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 711, in <genexpr>
+    pattern == "*" or is_same_domain(host, pattern) for pattern in allowed_hosts
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\http.py", line 242, in is_same_domain
+    pattern = pattern.lower()
+AttributeError: 'int' object has no attribute 'lower'
+2023-05-17 18:44:26,844 - ERROR - "GET /news/categories/4/ HTTP/1.1" 500 90057 - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\servers\basehttp.py - None
+2023-05-18 16:36:35,500 - ERROR - Internal Server Error: /news/ - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("'float' object has no attribute 'lower'"), <traceback object at 0x00000211B158D880>)
+Traceback (most recent call last):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\deprecation.py", line 135, in __call__
+    response = self.process_request(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 142, in get_host
+    if domain and validate_host(domain, allowed_hosts):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 710, in validate_host
+    return any(
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 711, in <genexpr>
+    pattern == "*" or is_same_domain(host, pattern) for pattern in allowed_hosts
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\http.py", line 242, in is_same_domain
+    pattern = pattern.lower()
+AttributeError: 'float' object has no attribute 'lower'
+2023-05-18 16:36:35,504 - ERROR - "GET /news/ HTTP/1.1" 500 90165 - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\servers\basehttp.py - None
+2023-05-18 16:42:09,222 - ERROR - Internal Server Error: /news/ - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("'float' object has no attribute 'lower'"), <traceback object at 0x0000025A2B85F6C0>)
+Traceback (most recent call last):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\deprecation.py", line 135, in __call__
+    response = self.process_request(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 142, in get_host
+    if domain and validate_host(domain, allowed_hosts):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 710, in validate_host
+    return any(
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 711, in <genexpr>
+    pattern == "*" or is_same_domain(host, pattern) for pattern in allowed_hosts
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\http.py", line 242, in is_same_domain
+    pattern = pattern.lower()
+AttributeError: 'float' object has no attribute 'lower'
+2023-05-18 16:42:09,225 - ERROR - "GET /news/ HTTP/1.1" 500 90229 - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\servers\basehttp.py - None
+2023-05-18 16:42:11,365 - ERROR - Internal Server Error: /news/ - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\log.py - (<class 'AttributeError'>, AttributeError("'float' object has no attribute 'lower'"), <traceback object at 0x0000025A2B716900>)
+Traceback (most recent call last):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\handlers\exception.py", line 56, in inner
+    response = get_response(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\deprecation.py", line 135, in __call__
+    response = self.process_request(request)
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 142, in get_host
+    if domain and validate_host(domain, allowed_hosts):
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 710, in validate_host
+    return any(
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\http\request.py", line 711, in <genexpr>
+    pattern == "*" or is_same_domain(host, pattern) for pattern in allowed_hosts
+  File "C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\utils\http.py", line 242, in is_same_domain
+    pattern = pattern.lower()
+AttributeError: 'float' object has no attribute 'lower'
+2023-05-18 16:42:11,368 - ERROR - "GET /news/ HTTP/1.1" 500 90229 - C:\projects\Skillfactory\News Portal\venv\lib\site-packages\django\core\servers\basehttp.py - None

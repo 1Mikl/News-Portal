@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
+from django.views.decorators.cache import cache_page
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -10,9 +11,14 @@ from .models import *
 from datetime import datetime
 from .filters import PostFilter
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
+import logging
 
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_FROM_EMAIL = "Zela52@yandex.ru"
+
 
 # Create your views here.
 class PostsList(ListView):
@@ -38,6 +44,7 @@ class PostDetail(DetailView):
     template_name = 'post.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'post'
+    queryset = Post.objects.all()
 
 
     def get_context_data(self, **kwargs):
@@ -46,6 +53,18 @@ class PostDetail(DetailView):
         context['time_now'] = datetime.utcnow()
         # context['next_sale'] = "СКИДКА на новостную подписку уже завтра!"
         return context
+
+
+    def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта, как ни странно
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+        # кэш очень похож на словарь, и метод get действует так же. Он забирает значение по ключу, если его нет, то забирает None.
+
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj, 5)
+
+        return obj
 
 class PostSearch(ListView):
     model = Post
@@ -152,3 +171,4 @@ def subscriptions(request):
         'subscriptions.html',
         {'categories': categories_with_subscriptions},
     )
+

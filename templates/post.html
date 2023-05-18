@@ -1,5 +1,5 @@
 {% extends 'flatpages/default.html' %}
-
+{% load cache %}
 <!-- Название у нас будет posts -->
 {% block title %}
 Post
@@ -7,7 +7,8 @@ Post
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-    <h3>Публикация</h3>
+{% cache 30 content %}
+    <h3>Публикация!</h3>
         <table>
             <tr>
                 <h1>{{ post.title }}</h1>
@@ -15,5 +16,6 @@ Post
                 <td>{{ post.text}}</td>
             </tr>
         </table>
+{% endcache %}
 {% endblock content %}
 
